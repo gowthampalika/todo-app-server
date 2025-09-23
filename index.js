@@ -1,7 +1,11 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const PORT = 3000;
 
+
+app.use(cors());
+app.use(express.json());
 // Sample todo list
 const todos = [
   { id: 1, title: "Go to Gym", description: "Workout for 1 hour" },
