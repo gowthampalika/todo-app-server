@@ -1,4 +1,3 @@
-// index.js
 const express = require("express");
 const app = express();
 const PORT = 3000;
@@ -57,19 +56,21 @@ const todos = [
   { id: 50, title: "Sleep Early", description: "Go to bed by 10 PM" }
 ];
 
-// API endpoint to return random todos
+// API endpoint to return random todos wrapped in an object
 app.get("/random-todo", (req, res) => {
-  // Random number of todos (between 1 and 15 max)
   const maxCount = 15;
   const count = Math.floor(Math.random() * maxCount) + 1;
 
-  // Shuffle todos
   const shuffled = [...todos].sort(() => 0.5 - Math.random());
-
-  // Take first `count` todos
   const selected = shuffled.slice(0, count);
 
-  res.json(selected);
+  res.json({
+    status: "OK",
+    code: 200,
+    locale: "en_US",
+    total: selected.length,
+    data: selected
+  });
 });
 
 app.listen(PORT, () => {
