@@ -6,7 +6,6 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 
-// Sample todo list
 const todos = [
   { id: 1, title: "Go to Gym", description: "Workout for 1 hour" },
   { id: 2, title: "Read Book", description: "Read 20 pages of a novel" },
@@ -60,15 +59,26 @@ const todos = [
   { id: 50, title: "Sleep Early", description: "Go to bed by 10 PM" }
 ];
 
-// API endpoint to return random todos wrapped in an object
 app.get("/random-todo", (req, res) => {
+  const { id } = req.query;
+
+  if (id) {
+    const todoId = parseInt(id, 10);
+    const foundTodo = todos.find(todo => todo.id === todoId);
+
+    if (foundTodo) {
+      return res.json({ todos: [foundTodo] });
+    } else {
+      return res.status(404).json({ error: `Todo with id ${todoId} not found.` });
+    }
+  }
+
   const maxCount = 15;
   const count = Math.floor(Math.random() * maxCount) + 1;
 
   const shuffled = [...todos].sort(() => 0.5 - Math.random());
   const selected = shuffled.slice(0, count);
 
-  // This line is changed to match the desired output
   res.json({ todos: selected });
 });
 
