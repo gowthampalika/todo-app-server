@@ -3,9 +3,9 @@ const cors = require("cors");
 const app = express();
 const PORT = 3000;
 
-
 app.use(cors());
 app.use(express.json());
+
 // Sample todo list
 const todos = [
   { id: 1, title: "Go to Gym", description: "Workout for 1 hour" },
@@ -68,13 +68,8 @@ app.get("/random-todo", (req, res) => {
   const shuffled = [...todos].sort(() => 0.5 - Math.random());
   const selected = shuffled.slice(0, count);
 
-  res.json({
-    status: "OK",
-    code: 200,
-    locale: "en_US",
-    total: selected.length,
-    data: selected
-  });
+  // This line is changed to match the desired output
+  res.json({ todos: selected });
 });
 
 app.listen(PORT, () => {
