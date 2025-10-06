@@ -59,6 +59,11 @@ const todos = [
   { id: 50, title: "Sleep Early", description: "Go to bed by 10 PM" }
 ];
 
+app.get("/", (req, res) => {
+  res.send("Welcome to the Todo API! Use /random-todo to get random todos.");
+  res.send("Use /notifications to get random  LinkedIn notifications data.");
+});
+
 app.get("/random-todo", (req, res) => {
   const { id } = req.query;
 
@@ -81,6 +86,14 @@ app.get("/random-todo", (req, res) => {
 
   res.json({ todos: selected });
 });
+
+app.get("/notifications", (req, res) => {
+    res.send({
+        network: parseInt(Math.random() * 100),
+        messages: parseInt(Math.random() * 100),
+        notifications: parseInt(Math.random() * 100)
+    })
+})
 
 app.listen(PORT, () => {
   console.log(`✅ Server running at http://localhost:${PORT}`);
