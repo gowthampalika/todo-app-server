@@ -101,6 +101,7 @@ app.get("/notifications", (req, res) => {
     res.send({
         network: parseInt(Math.random() * 100),
         messages: parseInt(Math.random() * 100),
+        jobs: parseInt(Math.random() * 100),
         notifications: parseInt(Math.random() * 100)
     })
 })
