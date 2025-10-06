@@ -60,8 +60,18 @@ const todos = [
 ];
 
 app.get("/", (req, res) => {
-  res.send("Welcome to the Todo API! Use /random-todo to get random todos.");
-  res.send("Use /notifications to get random  LinkedIn notifications data.");
+  res.send(`
+        <div>
+            <h1>
+              <div/>This is the Simple Backend App</div>
+              This is developed in Nodejs and Cors Avaliable
+            </h1>
+        </div>
+        <div>
+          <h3>To test the Todos go to /random-todos</h3>
+          <h3>To test the Linkedin Notifications go to /notifications</h3>
+        </div>
+    `)
 });
 
 app.get("/random-todo", (req, res) => {
